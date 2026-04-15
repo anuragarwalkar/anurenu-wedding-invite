@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { MapPin, Calendar, Clock } from 'lucide-react'
+import venueImage from '../assets/wedding-venue.png'
+import venueMapThumbnail from '../assets/venu-map-thubnail.png'
 
 function WeddingDetails() {
   return (
@@ -31,6 +33,19 @@ function WeddingDetails() {
           <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-medium text-charcoal-700 tracking-wide">
             Renuka Ganesh Rajguru
           </h3>
+        </div>
+
+        {/* Venue Cover Image */}
+        <div className="relative max-w-lg mx-auto mb-8 overflow-hidden rounded-sm">
+          <img
+            src={venueImage}
+            alt="Maharaja Banquet - Wedding Venue"
+            className="w-full h-48 sm:h-64 object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+          <p className="absolute bottom-4 left-0 right-0 text-center font-serif text-lg sm:text-xl text-white font-medium tracking-wide drop-shadow-lg">
+            Maharaja Banquet
+          </p>
         </div>
 
         {/* Event Details Card */}
@@ -74,9 +89,23 @@ function WeddingDetails() {
               <p className="font-serif text-xl sm:text-2xl font-medium text-charcoal-700 mb-5">
                 Maharaja Banquet
               </p>
-              
+
               <a
-                href="https://share.google/GzJojPmFiD5TPnm9m"
+                href="https://maps.app.goo.gl/Mx7XnQwuZafKMmjFA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mb-4 overflow-hidden rounded-sm border border-ivory-400/50 hover:border-gold-400 transition-all duration-300"
+              >
+                <img
+                  src={venueMapThumbnail}
+                  alt="Maharaja Banquet location on map"
+                  className="w-48 h-32 sm:w-56 sm:h-36 object-cover"
+                />
+              </a>
+              
+              <br />
+              <a
+                href="https://maps.app.goo.gl/Mx7XnQwuZafKMmjFA"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-2.5 border border-charcoal-700 text-charcoal-700 text-xs uppercase tracking-[0.2em] font-medium hover:bg-charcoal-700 hover:text-white transition-all duration-300"
