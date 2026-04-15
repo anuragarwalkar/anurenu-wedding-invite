@@ -1,9 +1,36 @@
 import { motion } from 'framer-motion'
-import { MapPin, Calendar, Clock } from 'lucide-react'
+import { MapPin, Calendar, Clock, CalendarPlus } from 'lucide-react'
 import venueImage from '../assets/wedding-venue.png'
 import venueMapThumbnail from '../assets/venu-map-thubnail.png'
 
 function WeddingDetails() {
+  const handleAddToCalendar = () => {
+    const icsContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//AnuRenu Wedding//EN',
+      'BEGIN:VEVENT',
+      'DTSTART;VALUE=DATE:20260508',
+      'DTEND;VALUE=DATE:20260509',
+      'SUMMARY:Anurag & Renuka Wedding',
+      'DESCRIPTION:Wedding ceremony of Anurag & Renuka at Maharaja Banquet. Auspicious time: 11:18 AM',
+      'LOCATION:Maharaja Banquet\\, Badlapur',
+      'URL:https://maps.app.goo.gl/Mx7XnQwuZafKMmjFA',
+      'END:VEVENT',
+      'END:VCALENDAR',
+    ].join('\r\n')
+
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = 'anurenu-wedding.ics'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+  }
+
   return (
     <section className="relative py-16 sm:py-24 px-4 bg-white">
       <div className="max-w-3xl mx-auto text-center">
@@ -65,6 +92,13 @@ function WeddingDetails() {
               <p className="font-serif text-xl sm:text-2xl font-medium text-charcoal-700">
                 Friday, May 8, 2026
               </p>
+              <button
+                onClick={handleAddToCalendar}
+                className="inline-flex items-center gap-2 mt-3 px-5 py-2 border border-gold-400 text-gold-600 text-xs uppercase tracking-[0.2em] font-medium hover:bg-gold-500 hover:text-white transition-all duration-300 rounded-sm"
+              >
+                <CalendarPlus className="w-3.5 h-3.5" />
+                Add to Calendar
+              </button>
             </div>
 
             <div className="w-16 h-px bg-gold-300/50 mx-auto"></div>
