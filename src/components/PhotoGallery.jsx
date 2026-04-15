@@ -1,36 +1,53 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import img8171 from '../assets/134A8171.jpg'
-import img8363 from '../assets/134A8363.jpg'
-import img8371 from '../assets/134A8371.jpg'
-import img8388 from '../assets/134A8388.jpg'
-import img8410 from '../assets/134A8410.jpg'
-import img8597 from '../assets/134A8597.jpg'
-import img8598 from '../assets/134A8598.jpg'
-import img8616 from '../assets/134A8616.jpg'
-import img8621 from '../assets/134A8621.jpg'
-import img8628 from '../assets/134A8628.jpg'
-import img8636 from '../assets/134A8636.jpg'
-import img8649 from '../assets/134A8649.jpg'
-import img8668 from '../assets/134A8668.jpg'
+
+// Thumbnails for grid (small, WebP)
+import thumb8171 from '../assets/134A8171.jpg?w=400&format=webp'
+import thumb8363 from '../assets/134A8363.jpg?w=400&format=webp'
+import thumb8371 from '../assets/134A8371.jpg?w=400&format=webp'
+import thumb8388 from '../assets/134A8388.jpg?w=400&format=webp'
+import thumb8410 from '../assets/134A8410.jpg?w=400&format=webp'
+import thumb8597 from '../assets/134A8597.jpg?w=400&format=webp'
+import thumb8598 from '../assets/134A8598.jpg?w=400&format=webp'
+import thumb8616 from '../assets/134A8616.jpg?w=400&format=webp'
+import thumb8621 from '../assets/134A8621.jpg?w=400&format=webp'
+import thumb8628 from '../assets/134A8628.jpg?w=400&format=webp'
+import thumb8636 from '../assets/134A8636.jpg?w=400&format=webp'
+import thumb8649 from '../assets/134A8649.jpg?w=400&format=webp'
+import thumb8668 from '../assets/134A8668.jpg?w=400&format=webp'
+
+// Full size for lightbox (larger, WebP)
+import full8171 from '../assets/134A8171.jpg?w=1200&format=webp'
+import full8363 from '../assets/134A8363.jpg?w=1200&format=webp'
+import full8371 from '../assets/134A8371.jpg?w=1200&format=webp'
+import full8388 from '../assets/134A8388.jpg?w=1200&format=webp'
+import full8410 from '../assets/134A8410.jpg?w=1200&format=webp'
+import full8597 from '../assets/134A8597.jpg?w=1200&format=webp'
+import full8598 from '../assets/134A8598.jpg?w=1200&format=webp'
+import full8616 from '../assets/134A8616.jpg?w=1200&format=webp'
+import full8621 from '../assets/134A8621.jpg?w=1200&format=webp'
+import full8628 from '../assets/134A8628.jpg?w=1200&format=webp'
+import full8636 from '../assets/134A8636.jpg?w=1200&format=webp'
+import full8649 from '../assets/134A8649.jpg?w=1200&format=webp'
+import full8668 from '../assets/134A8668.jpg?w=1200&format=webp'
 
 function PhotoGallery() {
   const [selectedPhoto, setSelectedPhoto] = useState(null)
 
   const photos = [
-    { id: 1, src: img8171 },
-    { id: 2, src: img8363 },
-    { id: 3, src: img8371 },
-    { id: 4, src: img8388 },
-    { id: 5, src: img8410 },
-    { id: 6, src: img8597 },
-    { id: 7, src: img8598 },
-    { id: 8, src: img8616 },
-    { id: 9, src: img8621 },
-    { id: 10, src: img8628 },
-    { id: 11, src: img8636 },
-    { id: 12, src: img8649 },
-    { id: 13, src: img8668 },
+    { id: 1, thumb: thumb8171, full: full8171 },
+    { id: 2, thumb: thumb8363, full: full8363 },
+    { id: 3, thumb: thumb8371, full: full8371 },
+    { id: 4, thumb: thumb8388, full: full8388 },
+    { id: 5, thumb: thumb8410, full: full8410 },
+    { id: 6, thumb: thumb8597, full: full8597 },
+    { id: 7, thumb: thumb8598, full: full8598 },
+    { id: 8, thumb: thumb8616, full: full8616 },
+    { id: 9, thumb: thumb8621, full: full8621 },
+    { id: 10, thumb: thumb8628, full: full8628 },
+    { id: 11, thumb: thumb8636, full: full8636 },
+    { id: 12, thumb: thumb8649, full: full8649 },
+    { id: 13, thumb: thumb8668, full: full8668 },
   ]
 
   return (
@@ -83,7 +100,7 @@ function PhotoGallery() {
               transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
             >
               <img
-                src={photo.src}
+                src={photo.thumb}
                 alt={`Memory ${photo.id}`}
                 className="w-full h-auto object-cover"
                 loading={index < 6 ? 'eager' : 'lazy'}
@@ -111,7 +128,7 @@ function PhotoGallery() {
             ✕
           </button>
           <motion.img
-            src={selectedPhoto.src}
+            src={selectedPhoto.full}
             alt="Selected memory"
             className="max-w-full max-h-[90vh] object-contain rounded-sm"
             onClick={(e) => e.stopPropagation()}

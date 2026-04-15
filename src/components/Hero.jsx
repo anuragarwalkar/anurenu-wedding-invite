@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import mainPhoto from '../assets/main.jpg'
+import mainPhotoSmall from '../assets/main.jpg?w=480&format=webp'
+import mainPhotoMedium from '../assets/main.jpg?w=768&format=webp'
+import mainPhotoLarge from '../assets/main.jpg?w=1200&format=webp'
+import mainPhotoFallback from '../assets/main.jpg?w=768'
 
 function Hero() {
   return (
@@ -10,11 +13,18 @@ function Hero() {
       <div className="lg:hidden relative min-h-screen flex flex-col">
         {/* Photo area - top 55% */}
         <div className="relative w-full h-[60vh] flex-shrink-0">
-          <img
-            src={mainPhoto}
-            alt="Anurag & Renuka"
-            className="w-full h-full object-cover object-top"
-          />
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={`${mainPhotoSmall} 480w, ${mainPhotoMedium} 768w`}
+              sizes="100vw"
+            />
+            <img
+              src={mainPhotoFallback}
+              alt="Anurag & Renuka"
+              className="w-full h-full object-cover object-top"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-ivory-100"></div>
 
           {/* "We Are Getting Married" on photo */}
@@ -88,11 +98,18 @@ function Hero() {
       <div className="hidden lg:flex min-h-screen">
         {/* Left - Photo */}
         <div className="relative w-1/2 min-h-screen">
-          <img
-            src={mainPhoto}
-            alt="Anurag & Renuka"
-            className="w-full h-full object-cover object-top"
-          />
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={`${mainPhotoMedium} 768w, ${mainPhotoLarge} 1200w`}
+              sizes="50vw"
+            />
+            <img
+              src={mainPhotoFallback}
+              alt="Anurag & Renuka"
+              className="w-full h-full object-cover object-top"
+            />
+          </picture>
           {/* Soft fade on the right edge into ivory */}
           <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-ivory-100 to-transparent"></div>
           <div className="absolute inset-0 bg-black/10"></div>

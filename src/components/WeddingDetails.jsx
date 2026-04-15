@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import { MapPin, Calendar, Clock, CalendarPlus } from 'lucide-react'
-import venueImage from '../assets/wedding-venue.png'
-import venueMapThumbnail from '../assets/venu-map-thubnail.png'
+import venueImageSmall from '../assets/wedding-venue.png?w=400&format=webp'
+import venueImageMedium from '../assets/wedding-venue.png?w=700&format=webp'
+import venueImageFallback from '../assets/wedding-venue.png?w=600'
+import venueMapThumbnail from '../assets/venu-map-thubnail.png?w=224&format=webp'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -90,11 +92,18 @@ function WeddingDetails() {
           initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          <img
-            src={venueImage}
-            alt="Maharaja Banquet - Wedding Venue"
-            className="w-full h-48 sm:h-64 object-cover"
-          />
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={`${venueImageSmall} 400w, ${venueImageMedium} 700w`}
+              sizes="(max-width: 640px) 100vw, 512px"
+            />
+            <img
+              src={venueImageFallback}
+              alt="Maharaja Banquet - Wedding Venue"
+              className="w-full h-48 sm:h-64 object-cover"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
           <p className="absolute bottom-4 left-0 right-0 text-center font-serif text-lg sm:text-xl text-white font-medium tracking-wide drop-shadow-lg">
             Maharaja Banquet
