@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 
 function WhatsAppButtons() {
@@ -11,23 +12,43 @@ function WhatsAppButtons() {
     <section className="relative py-16 sm:py-24 px-4 bg-white">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10">
-          <p className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-gold-500 font-medium mb-3">
+          <motion.p
+            className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-gold-500 font-medium mb-3"
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             Questions?
-          </p>
-          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl text-charcoal-700 mb-3">
+          </motion.p>
+          <motion.h2
+            className="font-heading text-4xl sm:text-5xl md:text-6xl text-charcoal-700 mb-3"
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             Get in Touch
-          </h2>
-          <div className="ornament-divider text-gold-400 mb-4">
+          </motion.h2>
+          <motion.div
+            className="ornament-divider text-gold-400 mb-4"
+            initial={{ opacity: 0, scaleX: 0 }} whileInView={{ opacity: 1, scaleX: 1 }} viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
             <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
               <path d="M8 0L10 6L16 8L10 10L8 16L6 10L0 8L6 6Z" />
             </svg>
-          </div>
-          <p className="font-serif text-base sm:text-lg text-charcoal-400 italic">
+          </motion.div>
+          <motion.p
+            className="font-serif text-base sm:text-lg text-charcoal-400 italic"
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             We'd love to hear from you
-          </p>
+          </motion.p>
         </div>
 
-        <div className="max-w-xs mx-auto">
+        <motion.div
+          className="max-w-xs mx-auto"
+          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           <a
             href={contact.link}
             target="_blank"
@@ -57,7 +78,7 @@ function WhatsAppButtons() {
               </div>
             </div>
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

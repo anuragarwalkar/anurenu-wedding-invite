@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import img8171 from '../assets/134A8171.jpg'
 import img8363 from '../assets/134A8363.jpg'
 import img8371 from '../assets/134A8371.jpg'
@@ -37,29 +38,49 @@ function PhotoGallery() {
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <p className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-gold-400 font-medium mb-3">
+          <motion.p
+            className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-gold-400 font-medium mb-3"
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             Our Memories
-          </p>
-          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl text-white mb-3">
+          </motion.p>
+          <motion.h2
+            className="font-heading text-4xl sm:text-5xl md:text-6xl text-white mb-3"
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             Our Journey
-          </h2>
-          <div className="ornament-divider text-gold-400 mb-4">
+          </motion.h2>
+          <motion.div
+            className="ornament-divider text-gold-400 mb-4"
+            initial={{ opacity: 0, scaleX: 0 }} whileInView={{ opacity: 1, scaleX: 1 }} viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
             <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
               <path d="M8 0L10 6L16 8L10 10L8 16L6 10L0 8L6 6Z" />
             </svg>
-          </div>
-          <p className="font-serif text-base sm:text-lg text-charcoal-200 italic">
+          </motion.div>
+          <motion.p
+            className="font-serif text-base sm:text-lg text-charcoal-200 italic"
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             Moments we cherish together
-          </p>
+          </motion.p>
         </div>
 
         {/* Masonry Grid */}
         <div className="columns-2 md:columns-3 gap-3 sm:gap-4 space-y-3 sm:space-y-4">
           {photos.map((photo, index) => (
-            <div
+            <motion.div
               key={photo.id}
               className="gallery-item break-inside-avoid rounded-sm overflow-hidden cursor-pointer relative group"
               onClick={() => setSelectedPhoto(photo)}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
             >
               <img
                 src={photo.src}
@@ -69,16 +90,19 @@ function PhotoGallery() {
               />
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
 
       {/* Lightbox */}
       {selectedPhoto && (
-        <div
+        <motion.div
           className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-pointer"
           onClick={() => setSelectedPhoto(null)}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           <button
             className="absolute top-4 right-4 text-white/70 hover:text-white text-2xl z-50 w-10 h-10 flex items-center justify-center"
@@ -86,13 +110,16 @@ function PhotoGallery() {
           >
             ✕
           </button>
-          <img
+          <motion.img
             src={selectedPhoto.src}
             alt="Selected memory"
             className="max-w-full max-h-[90vh] object-contain rounded-sm"
             onClick={(e) => e.stopPropagation()}
+            initial={{ scale: 0.85, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
           />
-        </div>
+        </motion.div>
       )}
     </section>
   )

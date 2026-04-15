@@ -1,22 +1,42 @@
+import { motion } from 'framer-motion'
+
 function Timeline() {
   return (
     <section className="relative py-16 sm:py-24 px-4 bg-ivory-100">
       <div className="max-w-3xl mx-auto text-center">
         {/* Section Header */}
-        <p className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-gold-500 font-medium mb-3">
+        <motion.p
+          className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-gold-500 font-medium mb-3"
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           Mark Your Calendar
-        </p>
-        <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl text-charcoal-700 mb-3">
+        </motion.p>
+        <motion.h2
+          className="font-heading text-4xl sm:text-5xl md:text-6xl text-charcoal-700 mb-3"
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           Event Timeline
-        </h2>
-        <div className="ornament-divider text-gold-400 mb-12">
+        </motion.h2>
+        <motion.div
+          className="ornament-divider text-gold-400 mb-12"
+          initial={{ opacity: 0, scaleX: 0 }} whileInView={{ opacity: 1, scaleX: 1 }} viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
             <path d="M8 0L10 6L16 8L10 10L8 16L6 10L0 8L6 6Z" />
           </svg>
-        </div>
+        </motion.div>
 
         {/* Event Card */}
-        <div className="relative max-w-md mx-auto">
+        <motion.div
+          className="relative max-w-md mx-auto"
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
           {/* Decorative vertical line */}
           <div className="absolute left-1/2 -translate-x-1/2 -top-6 w-px h-6 bg-gradient-to-b from-transparent to-gold-400"></div>
           
@@ -53,7 +73,7 @@ function Timeline() {
 
           {/* Decorative vertical line bottom */}
           <div className="absolute left-1/2 -translate-x-1/2 -bottom-6 w-px h-6 bg-gradient-to-b from-gold-400 to-transparent"></div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
