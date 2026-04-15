@@ -21,7 +21,7 @@ function WeddingDetails() {
       'DTEND;VALUE=DATE:20260509',
       'SUMMARY:Anurag & Renuka Wedding',
       'DESCRIPTION:Wedding ceremony of Anurag & Renuka at Maharaja Banquet. Auspicious time: 11:18 AM',
-      'LOCATION:Maharaja Banquet\\, Badlapur',
+      'LOCATION:Maharaja Banquet\\, Ground Floor\\, near Macdonald\\, opp. Madhuvan Hotel\\, Katrap\\, Badlapur\\, Maharashtra 421503',
       'URL:https://maps.app.goo.gl/Mx7XnQwuZafKMmjFA',
       'END:VEVENT',
       'END:VCALENDAR',
@@ -159,8 +159,11 @@ function WeddingDetails() {
                 <MapPin className="w-4 h-4 text-gold-500" />
                 <p className="text-[10px] uppercase tracking-[0.25em] text-charcoal-400 font-medium">Venue</p>
               </div>
-              <p className="font-serif text-xl sm:text-2xl font-medium text-charcoal-700 mb-5">
+              <p className="font-serif text-xl sm:text-2xl font-medium text-charcoal-700 mb-2">
                 Maharaja Banquet
+              </p>
+              <p className="mx-auto max-w-sm text-sm sm:text-base leading-relaxed text-charcoal-500 mb-5">
+                Ground Floor, near Macdonald, opp. Madhuvan Hotel, Katrap, Badlapur, Maharashtra 421503
               </p>
 
               <a
