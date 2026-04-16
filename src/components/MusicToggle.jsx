@@ -1,18 +1,33 @@
 import { useState, useRef, useEffect } from 'react'
 import { Play, Pause } from 'lucide-react'
+import backgroundMusic from '../assets/background.mp3'
 
 function MusicToggle() {
   const [isPlaying, setIsPlaying] = useState(false)
-  const [isLoaded, setIsLoaded] = useState(false)
   const audioRef = useRef(null)
 
   useEffect(() => {
-    const audio = new Audio('/music.mp3')
-    audio.addEventListener('canplaythrough', () => setIsLoaded(true))
-    audio.addEventListener('error', () => setIsLoaded(false))
+    const audio = new Audio(backgroundMusic)
+    audio.loop = true
     audioRef.current = audio
 
+    const tryAutoplay = () => {
+      if (!audioRef.current || !audioRef.current.paused) return
+      audioRef.current.play().then(() => {
+        setIsPlaying(true)
+        removeListeners()
+      }).catch(() => {})
+    }
+
+    const events = ['click', 'touchstart', 'keydown']
+    events.forEach(e => document.addEventListener(e, tryAutoplay, { once: false }))
+
+    const removeListeners = () => {
+      events.forEach(e => document.removeEventListener(e, tryAutoplay))
+    }
+
     return () => {
+      removeListeners()
       if (audioRef.current) {
         audioRef.current.pause()
         audioRef.current = null
@@ -21,7 +36,7 @@ function MusicToggle() {
   }, [])
 
   const toggleMusic = () => {
-    if (!audioRef.current || !isLoaded) return
+    if (!audioRef.current) return
 
     if (isPlaying) {
       audioRef.current.pause()
@@ -31,10 +46,6 @@ function MusicToggle() {
       })
     }
     setIsPlaying(!isPlaying)
-  }
-
-  if (!isLoaded) {
-    return null
   }
 
   return (
