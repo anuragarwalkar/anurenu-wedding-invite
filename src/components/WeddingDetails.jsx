@@ -12,30 +12,43 @@ const fadeUp = {
 
 function WeddingDetails() {
   const handleAddToCalendar = () => {
-    const icsContent = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//AnuRenu Wedding//EN',
-      'BEGIN:VEVENT',
-      'DTSTART;VALUE=DATE:20260508',
-      'DTEND;VALUE=DATE:20260509',
-      'SUMMARY:Anurag & Renuka Wedding',
-      'DESCRIPTION:Wedding ceremony of Anurag & Renuka at Maharaja Banquet. Auspicious time: 11:18 AM',
-      'LOCATION:Maharaja Banquet\\, Ground Floor\\, near Macdonald\\, opp. Madhuvan Hotel\\, Katrap\\, Badlapur\\, Maharashtra 421503',
-      'URL:https://maps.app.goo.gl/Mx7XnQwuZafKMmjFA',
-      'END:VEVENT',
-      'END:VCALENDAR',
-    ].join('\r\n')
+    const isAndroid = /Android/i.test(navigator.userAgent)
 
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = 'anurenu-wedding.ics'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    URL.revokeObjectURL(url)
+    if (isAndroid) {
+      // Use Google Calendar URL — opens directly in Google Calendar app on Android
+      const gcalUrl = new URL('https://calendar.google.com/calendar/render')
+      gcalUrl.searchParams.set('action', 'TEMPLATE')
+      gcalUrl.searchParams.set('text', 'Anurag & Renuka Wedding')
+      gcalUrl.searchParams.set('dates', '20260508/20260509')
+      gcalUrl.searchParams.set('details', 'Wedding ceremony of Anurag & Renuka at Maharaja Banquet. Auspicious time: 11:18 AM\n\nMap: https://maps.app.goo.gl/Mx7XnQwuZafKMmjFA')
+      gcalUrl.searchParams.set('location', 'Maharaja Banquet, Ground Floor, near Macdonald, opp. Madhuvan Hotel, Katrap, Badlapur, Maharashtra 421503')
+      window.open(gcalUrl.toString(), '_blank')
+    } else {
+      const icsContent = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//AnuRenu Wedding//EN',
+        'BEGIN:VEVENT',
+        'DTSTART;VALUE=DATE:20260508',
+        'DTEND;VALUE=DATE:20260509',
+        'SUMMARY:Anurag & Renuka Wedding',
+        'DESCRIPTION:Wedding ceremony of Anurag & Renuka at Maharaja Banquet. Auspicious time: 11:18 AM',
+        'LOCATION:Maharaja Banquet\\, Ground Floor\\, near Macdonald\\, opp. Madhuvan Hotel\\, Katrap\\, Badlapur\\, Maharashtra 421503',
+        'URL:https://maps.app.goo.gl/Mx7XnQwuZafKMmjFA',
+        'END:VEVENT',
+        'END:VCALENDAR',
+      ].join('\r\n')
+
+      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' })
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = 'anurenu-wedding.ics'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      URL.revokeObjectURL(url)
+    }
   }
 
   return (
